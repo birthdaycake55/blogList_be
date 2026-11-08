@@ -1,7 +1,7 @@
 const app = require('./app')
-const config = require('./utils/config') //use .env file
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 
-// port creation
-app.listen(config.PORT, () => { //listen to requests
+app.listen(config.PORT, () => { 
   logger.info(`Server running on port ${config.PORT}`)
 })

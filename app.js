@@ -1,12 +1,16 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const config = require('./utils/config')
-const contactRouter = require('./controllers/contacts')
+const logger = require('./utils/logger')
+const middleware = require('./utils/middleware')
+const blogRouter = require('./controllers/blogs')
 
-const dns = require('node:dns'); //needed or ig mongoose wont work
+const dns = require('node:dns'); 
 dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const app = express()
+
+logger.info('connecting to', config.MONGODB_URI)
 
 mongoose
   .connect(config.MONGODB_URI, { family: 4 })
@@ -17,6 +21,12 @@ mongoose
     logger.error('error connection to MongoDB:', error.message)
   })
 
-  pp.use('/api/blog', contactRouter)
+app.use(express.json())
+app.use(middleware.requestLogger)
+
+app.use('/api/blog', blogRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app
