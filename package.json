@@ -7,14 +7,18 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "node --watch index.js"
+    "test": "cross-env NODE_ENV=test node --test",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development node --watch index.js"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "dotenv": "^18.0.9",
     "express": "^5.3.0",
     "mongoose": "^9.12.0",
     "node.js": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.2"
   }
 }
