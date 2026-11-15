@@ -1,0 +1,41 @@
+GET http://localhost:3003/api/users/
+
+###
+POST http://localhost:3003/api/users/
+Content-type: application/json
+
+{
+    "username": "root",
+    "name": "Superuser",
+    "password": "salainen"
+}
+
+###
+POST http://localhost:3003/api/users/
+Content-type: application/json
+
+{
+    "username": "longenough",
+    "name": "Superuser",
+    "password": "no"
+}
+
+###
+POST http://localhost:3003/api/users/
+Content-type: application/json
+
+{
+    "username": "no",
+    "name": "Superuser",
+    "password": "salainen"
+}
+
+###
+POST http://localhost:3003/api/users/
+Content-type: application/json
+
+{
+    "username": "birthdaycake55",
+    "name": "chloe",
+    "password": "salainen"
+}
